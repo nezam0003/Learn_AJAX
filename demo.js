@@ -7,21 +7,34 @@ function makeRequest() {
     // Open XMLHttpRequest function
     xhr.open('GET', "data.txt", true);
     // XMLHttpRequest Handler
-    xhr.onreadystatechange = () => {
-        // checking ready state
-        if (xhr.readyState === XMLHttpRequest.DONE) {
-            // checking request status
-            if (xhr.status === 200) {
-                console.log(xhr);
-                console.log(xhr.responseText);
-            } else {
-                console.log('Problem Occured');
-            }
 
+    // ****** onReadyStateChange method ******
+
+    // xhr.onreadystatechange = () => {
+    //     // checking ready state
+    //     if (xhr.readyState === XMLHttpRequest.DONE) {
+    //         // checking request status
+    //         if (xhr.status === 200) {
+    //             console.log(xhr);
+    //             console.log(xhr.responseText);
+    //         } else {
+    //             console.log('Problem Occured');
+    //         }
+
+    //     } else {
+    //         console.log('Could not make request');
+    //     }
+    // };
+
+    // ********* onLoad method***********
+    xhr.onload = () => {
+        if (xhr.status === 200) {
+            console.log(xhr);
+            console.log(xhr.responseText);
         } else {
-            console.log('Could not make request');
+            console.log('problem occured');
         }
-    };
+    }
     xhr.send();
 
 }
