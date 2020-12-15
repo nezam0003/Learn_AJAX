@@ -1,27 +1,31 @@
-const btn = document.getElementById('btn-ajax');
-btn.addEventListener('click', makeRequest);
+document.getElementById('btn-ajax').addEventListener('click', makeRequest);
 
 function makeRequest() {
-    // Create XMLHttpRequest object
     const xhr = new XMLHttpRequest();
-    // Open XMLHttpRequest function
-    xhr.open('GET', "data.txt", true);
-    // XMLHttpRequest Handler
+    if (xhr.readyState === 0) {
+        console.log('Open method has not called yet');
+    }
+    xhr.open('GET', 'data.txt', true);
+    if (xhr.readyState === 1) {
+        console.log('Open method has called');
+    }
+    //*********** onReadyStateChange***********
     xhr.onreadystatechange = () => {
-        // checking ready state
-        if (xhr.readyState === XMLHttpRequest.DONE) {
-            // checking request status
+        if (xhr.readyState === 2) {
+            console.log('Response header');
+        }
+        if (xhr.readyState === 3) {
+            console.log('Loading state...');
+        }
+
+        if (xhr.readyState === 4) {
             if (xhr.status === 200) {
                 console.log(xhr);
                 console.log(xhr.responseText);
             } else {
-                console.log('Problem Occured');
+                console.log('problem occured');
             }
-
-        } else {
-            console.log('Could not make request');
         }
-    };
+    }
     xhr.send();
-
 }
