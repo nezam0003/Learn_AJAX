@@ -21,7 +21,7 @@ function makeRequest() {
         } else {
             console.log('Could not make request');
         }
-    }
+    };
     xhr.send();
 
 }
