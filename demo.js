@@ -35,6 +35,29 @@ function makeRequest() {
             console.log('problem occured');
         }
     }
+
+    // *********** onProgress **********
+    xhr.onprogress = (e) => {
+            console.log(e.loaded);
+            console.log(e.total);
+        }
+        // *********** onError **********
+    xhr.onerror = () => {
+            console.log('Network not found');
+        }
+        // *********** onLoadStart **********
+    xhr.onloadstart = () => {
+            console.log('transiction start');
+        }
+        // *********** onLoadend **********
+    xhr.onloadend = () => {
+            console.log('transiction end');
+        }
+        // *********** onAbort **********
+    xhr.onabort = () => {
+        console.log('Transiction aborted');
+    }
+
     xhr.send();
 
 }
