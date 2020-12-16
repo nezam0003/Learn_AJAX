@@ -6,6 +6,8 @@ function makeRequest() {
     const xhr = new XMLHttpRequest();
     // Open XMLHttpRequest function
     xhr.open('GET', "data.txt", true);
+    // set time out
+    xhr.timeout = 2000;
     // XMLHttpRequest Handler
 
     // ****** onReadyStateChange method ******
@@ -55,7 +57,11 @@ function makeRequest() {
         }
         // *********** onAbort **********
     xhr.onabort = () => {
-        console.log('Transiction aborted');
+            console.log('Transiction aborted');
+        }
+        // *********** onTimeOut **********
+    xhr.ontimeout = () => {
+        console.log('Transiction timeout');
     }
 
     xhr.send();
