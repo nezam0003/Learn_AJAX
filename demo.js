@@ -1,4 +1,5 @@
 const btn = document.getElementById('btn-ajax');
+const showData = document.getElementById('show-data');
 btn.addEventListener('click', makeRequest);
 
 function makeRequest() {
@@ -6,64 +7,13 @@ function makeRequest() {
     const xhr = new XMLHttpRequest();
     // Open XMLHttpRequest function
     xhr.open('GET', "data.txt", true);
-    // set time out
-    xhr.timeout = 2000;
-    // XMLHttpRequest Handler
-
-    // ****** onReadyStateChange method ******
-
-    // xhr.onreadystatechange = () => {
-    //     // checking ready state
-    //     if (xhr.readyState === XMLHttpRequest.DONE) {
-    //         // checking request status
-    //         if (xhr.status === 200) {
-    //             console.log(xhr);
-    //             console.log(xhr.responseText);
-    //         } else {
-    //             console.log('Problem Occured');
-    //         }
-
-    //     } else {
-    //         console.log('Could not make request');
-    //     }
-    // };
-
-    // ********* onLoad method***********
     xhr.onload = () => {
         if (xhr.status === 200) {
-            console.log(xhr);
-            console.log(xhr.responseText);
+            showData.innerText = xhr.responseText;
         } else {
-            console.log('problem occured');
+            console.log('error occured');
         }
     }
-
-    // *********** onProgress **********
-    xhr.onprogress = (e) => {
-            console.log(e.loaded);
-            console.log(e.total);
-        }
-        // *********** onError **********
-    xhr.onerror = () => {
-            console.log('Network not found');
-        }
-        // *********** onLoadStart **********
-    xhr.onloadstart = () => {
-            console.log('transiction start');
-        }
-        // *********** onLoadend **********
-    xhr.onloadend = () => {
-            console.log('transiction end');
-        }
-        // *********** onAbort **********
-    xhr.onabort = () => {
-            console.log('Transiction aborted');
-        }
-        // *********** onTimeOut **********
-    xhr.ontimeout = () => {
-        console.log('Transiction timeout');
-    }
-
     xhr.send();
 
 }
